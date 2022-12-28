@@ -83,6 +83,7 @@ module.exports = function(grunt) {
                     "src/js/polyfills.js",
                     "src/js/jquery-addons.js",
                     "src/js/red.js",
+                    "src/js/resource.js",
                     "src/js/events.js",
                     "src/js/hooks.js",
                     "src/js/i18n.js",

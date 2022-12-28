@@ -609,7 +609,7 @@ RED.workspaces = (function() {
                 var sf = RED.nodes.subflow(id);
                 if (sf) {
                     addWorkspace(
-                        {type:"subflow",id:id,icon:"red/images/subflow_tab.svg",label:sf.name, closeable: true},
+                        {type:"subflow",id:id,icon:RED.resource.url("images/subflow_tab.svg"),label:sf.name, closeable: true},
                         null,
                         workspace_tabs.activeIndex()+1
                     );

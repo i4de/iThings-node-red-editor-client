@@ -136,7 +136,7 @@ RED.keyboard = (function() {
         migrateOldKeymap();
 
         var userKeymap = RED.settings.get('editor.keymap', {});
-        $.getJSON("red/keymap.json",function(defaultKeymap) {
+        $.getJSON(RED.resource.url("keymap.json"),function(defaultKeymap) {
             var keymap = mergeKeymaps(defaultKeymap, RED.settings.theme('keymap',{}));
             // keymap has the format:  {action: [{scope,key},{scope,key}], action: [{scope:key}]}
 

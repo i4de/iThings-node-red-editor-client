@@ -311,8 +311,8 @@
                 types:[
                     'str','num','bool',
                     {value:"null",label:RED._("common.type.null"),hasValue:false},
-                    {value:"array",label:RED._("common.type.array"),hasValue:false,icon:"red/images/typedInput/json.svg"},
-                    {value:"object",label:RED._("common.type.object"),hasValue:false,icon:"red/images/typedInput/json.svg"}
+                    {value:"array",label:RED._("common.type.array"),hasValue:false,icon:RED.resource.url("images/typedInput/json.svg")},
+                    {value:"object",label:RED._("common.type.object"),hasValue:false,icon:RED.resource.url("images/typedInput/json.svg")}
                 ],
                 default: valType
             });

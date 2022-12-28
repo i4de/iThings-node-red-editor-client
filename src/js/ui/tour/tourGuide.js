@@ -257,7 +257,7 @@ RED.tourGuide = (function() {
             $('<div>').css("text-align","left").html(getLocaleText(step.description)).appendTo(stepDescription);
 
             if (step.image) {
-                $(`<img src="red/tours/${step.image}" />`).appendTo(stepDescription)
+                $(`<img src="${RED.resource.url(`tours/${step.image}`)}" />`).appendTo(stepDescription)
             }
 
             var stepToolbar = $('<div>',{class:"red-ui-tourGuide-toolbar"}).appendTo(stepContent);

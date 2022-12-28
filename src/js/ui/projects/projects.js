@@ -286,7 +286,7 @@ RED.projects = (function() {
                                 clearTimeout(checkProjectName);
                             } else if (projectNameInputChanged) {
                                 projectNameStatus.empty();
-                                $('<img src="red/images/spin.svg"/>').appendTo(projectNameStatus);
+                                $('<img src="' + RED.resource.url("images/spin.svg") + '"/>').appendTo(projectNameStatus);
                                 if (projectNameInput.val() === '') {
                                     validateForm();
                                     return;
@@ -459,7 +459,7 @@ RED.projects = (function() {
                                 clearTimeout(checkProjectName);
                             } else if (projectNameInputChanged) {
                                 projectNameStatus.empty();
-                                $('<img src="red/images/spin.svg"/>').appendTo(projectNameStatus);
+                                $('<img src="' + RED.resource.url("images/spin.svg") + '"/>').appendTo(projectNameStatus);
                                 if (projectNameInput.val() === '') {
                                     validateForm();
                                     return;
@@ -1235,7 +1235,7 @@ RED.projects = (function() {
                                 clearTimeout(checkProjectName);
                             } else if (projectNameInputChanged) {
                                 projectNameStatus.empty();
-                                $('<img src="red/images/spin.svg"/>').appendTo(projectNameStatus);
+                                $('<img src="' + RED.resource.url("images/spin.svg") + '"/>').appendTo(projectNameStatus);
                                 if (projectNameInput.val() === '') {
                                     validateForm();
                                     return;
@@ -2266,12 +2266,12 @@ RED.projects = (function() {
     }
 
     function addSpinnerOverlay(container) {
-        var spinner = $('<div class="red-ui-component-spinner"><img src="red/images/spin.svg"/></div>').appendTo(container);
+        var spinner = $('<div class="red-ui-component-spinner"><img src="' + RED.resource.url("images/spin.svg") + '"/></div>').appendTo(container);
         return spinner;
     }
 
     function init() {
-        dialog = $('<div id="red-ui-projects-dialog" class="hide red-ui-projects-edit-form"><div class="red-ui-projects-dialog-box"><form class="form-horizontal"></form><div class="red-ui-component-spinner hide"><img src="red/images/spin.svg"/></div></div></div>')
+        dialog = $('<div id="red-ui-projects-dialog" class="hide red-ui-projects-edit-form"><div class="red-ui-projects-dialog-box"><form class="form-horizontal"></form><div class="red-ui-component-spinner hide"><img src="' + RED.resource.url("images/spin.svg") + '"/></div></div></div>')
             .appendTo("#red-ui-editor")
             .dialog({
                 modal: true,

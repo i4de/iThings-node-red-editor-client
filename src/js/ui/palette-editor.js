@@ -721,7 +721,7 @@ RED.palette.editor = (function() {
                     var enableButton = $('<a href="#" class="red-ui-button red-ui-button-small"></a>').text(RED._('palette.editor.disableall')).appendTo(buttonGroup);
 
                     var contentRow = $('<div>',{class:"red-ui-palette-module-content"}).appendTo(container);
-                    var shade = $('<div class="red-ui-palette-module-shade hide"><img src="red/images/spin.svg" class="red-ui-palette-spinner"/></div>').appendTo(container);
+                    var shade = $('<div class="red-ui-palette-module-shade hide"><img src="' + RED.resource.url("images/spin.svg") + '" class="red-ui-palette-spinner"/></div>').appendTo(container);
 
                     object.elements = {
                         updateButton: updateButton,
@@ -1031,7 +1031,7 @@ RED.palette.editor = (function() {
             RED.popover.tooltip(uploadButton,RED._("palette.editor.upload"));
         }
 
-        $('<div id="red-ui-palette-module-install-shade" class="red-ui-palette-module-shade hide"><div class="red-ui-palette-module-shade-status"></div><img src="red/images/spin.svg" class="red-ui-palette-spinner"/></div>').appendTo(installTab);
+        $('<div id="red-ui-palette-module-install-shade" class="red-ui-palette-module-shade hide"><div class="red-ui-palette-module-shade-status"></div><img src="' + RED.resource.url("images/spin.svg") + '" class="red-ui-palette-spinner"/></div>').appendTo(installTab);
     }
 
     function update(entry,version,url,container,done) {

@@ -545,7 +545,7 @@ RED.palette = (function() {
 
     function init() {
 
-        $('<img src="red/images/spin.svg" class="red-ui-palette-spinner hide"/>').appendTo("#red-ui-palette");
+        $('<img src="' + RED.resource.url("images/spin.svg") + '" class="red-ui-palette-spinner hide"/>').appendTo("#red-ui-palette");
         $('<div id="red-ui-palette-search" class="red-ui-palette-search hide"><input type="text" data-i18n="[placeholder]palette.filter"></input></div>').appendTo("#red-ui-palette");
         $('<div id="red-ui-palette-container" class="red-ui-palette-scroll hide"></div>').appendTo("#red-ui-palette");
         $('<div class="red-ui-component-footer"></div>').appendTo("#red-ui-palette");

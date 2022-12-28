@@ -273,12 +273,12 @@ RED.editor.envVarList = (function() {
                 {
                     value:"input",
                     label:RED._("editor.inputs.input"), icon:"fa fa-i-cursor",showLabel:false,multiple:true,options:[
-                        {value:"str",label:RED._("editor.types.str"),icon:"red/images/typedInput/az.svg"},
-                        {value:"num",label:RED._("editor.types.num"),icon:"red/images/typedInput/09.svg"},
-                        {value:"bool",label:RED._("editor.types.bool"),icon:"red/images/typedInput/bool.svg"},
-                        {value:"json",label:RED._("editor.types.json"),icon:"red/images/typedInput/json.svg"},
-                        {value: "bin",label: RED._("editor.types.bin"),icon: "red/images/typedInput/bin.svg"},
-                        {value: "env",label: RED._("editor.types.env"),icon: "red/images/typedInput/env.svg"},
+                        {value:"str",label:RED._("editor.types.str"),icon:RED.resource.url("images/typedInput/az.svg")},
+                        {value:"num",label:RED._("editor.types.num"),icon:RED.resource.url("images/typedInput/09.svg")},
+                        {value:"bool",label:RED._("editor.types.bool"),icon:RED.resource.url("images/typedInput/bool.svg")},
+                        {value:"json",label:RED._("editor.types.json"),icon:RED.resource.url("images/typedInput/json.svg")},
+                        {value: "bin",label: RED._("editor.types.bin"),icon: RED.resource.url("images/typedInput/bin.svg")},
+                        {value: "env",label: RED._("editor.types.env"),icon: RED.resource.url("images/typedInput/env.svg")},
                         {value: "cred",label: RED._("editor.types.cred"),icon: "fa fa-lock"}
                     ],
                     default: DEFAULT_ENV_TYPE_LIST,

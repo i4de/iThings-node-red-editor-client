@@ -76,7 +76,7 @@ RED.user = (function() {
                         }
                         row.appendTo("#node-dialog-login-fields");
                     }
-                    $('<div class="form-row" style="text-align: right; margin-top: 10px;"><span id="node-dialog-login-failed" style="line-height: 2em;float:left;color:var(--red-ui-text-color-error);" class="hide">'+RED._("user.loginFailed")+'</span><img src="red/images/spin.svg" style="height: 30px; margin-right: 10px; " class="login-spinner hide"/>'+
+                    $('<div class="form-row" style="text-align: right; margin-top: 10px;"><span id="node-dialog-login-failed" style="line-height: 2em;float:left;color:var(--red-ui-text-color-error);" class="hide">' + RED._("user.loginFailed") + '</span><img src="' + RED.resource.url("images/spin.svg") + '" style="height: 30px; margin-right: 10px; " class="login-spinner hide"/>' +
                         (opts.cancelable?'<a href="#" id="node-dialog-login-cancel" class="red-ui-button" style="margin-right: 20px;" tabIndex="'+(i+1)+'">'+RED._("common.label.cancel")+'</a>':'')+
                         '<input type="submit" id="node-dialog-login-submit" class="red-ui-button" style="width: auto;" tabIndex="'+(i+2)+'" value="'+RED._("user.login")+'"></div>').appendTo("#node-dialog-login-fields");
 
@@ -176,7 +176,7 @@ RED.user = (function() {
                     });
                 }
 
-                var loginImageSrc = data.image || "red/images/node-red-256.svg";
+                var loginImageSrc = data.image || RED.resource.url("images/node-red-256.svg");
 
                 $("#node-dialog-login-image").load(function() {
                     dialog.dialog("open");

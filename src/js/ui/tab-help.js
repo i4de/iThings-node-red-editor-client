@@ -108,7 +108,7 @@ RED.sidebar.help = (function() {
                     if (item.content.length === 0) {
                         setInfoText(item.label, item.content());
                     } else {
-                        setInfoText(item.label, '<div class="red-ui-component-spinner red-ui-component-spinner-contain"><img src="red/images/spin.svg" /></div>',helpSection)
+                        setInfoText(item.label, '<div class="red-ui-component-spinner red-ui-component-spinner-contain"><img src="' + RED.resource.url("images/spin.svg") + '" /></div>',helpSection)
                         item.content(function(content) {
                             if (pendingContentLoad === item) {
                                 helpSection.empty();
@@ -396,11 +396,11 @@ RED.sidebar.help = (function() {
     RED.events.on("view:selection-changed",refreshSelection);
 
     function getChangelog(done) {
-        $.get('red/about', function(data) {
+        $.get(RED.resource.url('about'), function(data) {
             // data will be strictly markdown. Any HTML should be escaped.
             data = RED.utils.sanitize(data);
             RED.tourGuide.load("./tours/welcome.js", function(err, tour) {
-                var tourHeader = '<div><img width="50px" src="red/images/node-red-icon.svg" /></div>';
+                var tourHeader = '<div><img width="50px" src="' + RED.resource.url("images/node-red-icon.svg") + '" /></div>';
                 if (tour) {
                     var currentVersionParts = RED.settings.version.split(".");
                     var tourVersionParts = tour.version.split(".");

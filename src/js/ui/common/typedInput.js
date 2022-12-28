@@ -181,13 +181,13 @@
             export: contextExport,
             valueLabel: contextLabel
         },
-        str: {value:"str",label:"string",icon:"red/images/typedInput/az.svg"},
-        num: {value:"num",label:"number",icon:"red/images/typedInput/09.svg",validate:/^[+-]?[0-9]*\.?[0-9]*([eE][-+]?[0-9]+)?$/},
-        bool: {value:"bool",label:"boolean",icon:"red/images/typedInput/bool.svg",options:["true","false"]},
+        str: {value:"str",label:"string",icon:RED.resource.url("images/typedInput/az.svg")},
+        num: {value:"num",label:"number",icon:RED.resource.url("images/typedInput/09.svg"),validate:/^[+-]?[0-9]*\.?[0-9]*([eE][-+]?[0-9]+)?$/},
+        bool: {value:"bool",label:"boolean",icon:RED.resource.url("images/typedInput/bool.svg"),options:["true","false"]},
         json: {
             value:"json",
             label:"JSON",
-            icon:"red/images/typedInput/json.svg",
+            icon:RED.resource.url("images/typedInput/json.svg"),
             validate: function(v) { try{JSON.parse(v);return true;}catch(e){return false;}},
             expand: function() {
                 var that = this;
@@ -211,12 +211,12 @@
                 })
             }
         },
-        re: {value:"re",label:"regular expression",icon:"red/images/typedInput/re.svg"},
+        re: {value:"re",label:"regular expression",icon:RED.resource.url("images/typedInput/re.svg")},
         date: {value:"date",label:"timestamp",icon:"fa fa-clock-o",hasValue:false},
         jsonata: {
             value: "jsonata",
             label: "expression",
-            icon: "red/images/typedInput/expr.svg",
+            icon: RED.resource.url("images/typedInput/expr.svg"),
             validate: function(v) { try{jsonata(v);return true;}catch(e){return false;}},
             expand:function() {
                 var that = this;
@@ -233,7 +233,7 @@
         bin: {
             value: "bin",
             label: "buffer",
-            icon: "red/images/typedInput/bin.svg",
+            icon: RED.resource.url("images/typedInput/bin.svg"),
             expand: function() {
                 var that = this;
                 RED.editor.editBuffer({
@@ -249,12 +249,12 @@
         env: {
             value: "env",
             label: "env variable",
-            icon: "red/images/typedInput/env.svg"
+            icon: RED.resource.url("images/typedInput/env.svg")
         },
         node: {
             value: "node",
             label: "node",
-            icon: "red/images/typedInput/target.svg",
+            icon: RED.resource.url("images/typedInput/target.svg"),
             valueLabel: function(container,value) {
                 var node = RED.nodes.node(value);
                 var nodeDiv = $('<div>',{class:"red-ui-search-result-node"}).css({

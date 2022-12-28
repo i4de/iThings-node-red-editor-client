@@ -1168,7 +1168,7 @@ RED.utils = (function() {
     }
 
     function addSpinnerOverlay(container,contain) {
-        var spinner = $('<div class="red-ui-component-spinner "><img src="red/images/spin.svg"/></div>').appendTo(container);
+        var spinner = $('<div class="red-ui-component-spinner "><img src="' + RED.resource.url("images/spin.svg") + '"/></div>').appendTo(container);
         if (contain) {
             spinner.addClass('red-ui-component-spinner-contain');
         }

@@ -17,9 +17,9 @@
 RED.deploy = (function() {
 
     var deploymentTypes = {
-        "full":{img:"red/images/deploy-full-o.svg"},
-        "nodes":{img:"red/images/deploy-nodes-o.svg"},
-        "flows":{img:"red/images/deploy-flows-o.svg"}
+        "full":{img:RED.resource.url("images/deploy-full-o.svg")},
+        "nodes":{img:RED.resource.url("images/deploy-nodes-o.svg")},
+        "flows":{img:RED.resource.url("images/deploy-flows-o.svg")}
     }
 
     var ignoreDeployWarnings = {
@@ -44,7 +44,7 @@ RED.deploy = (function() {
      *   type: "default" - Button with drop-down options - no further customisation available
      *   type: "simple"  - Button without dropdown. Customisations:
      *      label: the text to display - default: "Deploy"
-     *      icon : the icon to use. Null removes the icon. default: "red/images/deploy-full-o.svg"
+     *      icon : the icon to use. Null removes the icon. default: RED.resource.url("images/deploy-full-o.svg")
      */
     function init(options) {
         options = options || {};
@@ -54,30 +54,30 @@ RED.deploy = (function() {
             $('<li><span class="red-ui-deploy-button-group button-group">'+
               '<a id="red-ui-header-button-deploy" class="red-ui-deploy-button disabled" href="#">'+
                 '<span class="red-ui-deploy-button-content">'+
-                 '<img id="red-ui-header-button-deploy-icon" src="red/images/deploy-full-o.svg"> '+
+                 '<img id="red-ui-header-button-deploy-icon" src="' + RED.resource.url("images/deploy-full-o.svg") + '"> ' +
                  '<span>'+RED._("deploy.deploy")+'</span>'+
                 '</span>'+
                 '<span class="red-ui-deploy-button-spinner hide">'+
-                 '<img src="red/images/spin.svg"/>'+
+                 '<img src="' + RED.resource.url("images/spin.svg") + '"/>'+
                 '</span>'+
               '</a>'+
               '<a id="red-ui-header-button-deploy-options" class="red-ui-deploy-button" href="#"><i class="fa fa-caret-down"></i></a>'+
               '</span></li>').prependTo(".red-ui-header-toolbar");
             const mainMenuItems = [
-                    {id:"deploymenu-item-full",toggle:"deploy-type",icon:"red/images/deploy-full.svg",label:RED._("deploy.full"),sublabel:RED._("deploy.fullDesc"),selected: true, onselect:function(s) { if(s){changeDeploymentType("full")}}},
-                    {id:"deploymenu-item-flow",toggle:"deploy-type",icon:"red/images/deploy-flows.svg",label:RED._("deploy.modifiedFlows"),sublabel:RED._("deploy.modifiedFlowsDesc"), onselect:function(s) {if(s){changeDeploymentType("flows")}}},
-                    {id:"deploymenu-item-node",toggle:"deploy-type",icon:"red/images/deploy-nodes.svg",label:RED._("deploy.modifiedNodes"),sublabel:RED._("deploy.modifiedNodesDesc"),onselect:function(s) { if(s){changeDeploymentType("nodes")}}},
+                    {id:"deploymenu-item-full",toggle:"deploy-type",icon:RED.resource.url("images/deploy-full.svg"),label:RED._("deploy.full"),sublabel:RED._("deploy.fullDesc"),selected: true, onselect:function(s) { if(s){changeDeploymentType("full")}}},
+                    {id:"deploymenu-item-flow",toggle:"deploy-type",icon:RED.resource.url("images/deploy-flows.svg"),label:RED._("deploy.modifiedFlows"),sublabel:RED._("deploy.modifiedFlowsDesc"), onselect:function(s) {if(s){changeDeploymentType("flows")}}},
+                    {id:"deploymenu-item-node",toggle:"deploy-type",icon:RED.resource.url("images/deploy-nodes.svg"),label:RED._("deploy.modifiedNodes"),sublabel:RED._("deploy.modifiedNodesDesc"),onselect:function(s) { if(s){changeDeploymentType("nodes")}}},
                     null
             ]
             if (RED.settings.runtimeState && RED.settings.runtimeState.ui === true) {
-                mainMenuItems.push({id:"deploymenu-item-runtime-start", icon:"red/images/start.svg",label:RED._("deploy.startFlows"),sublabel:RED._("deploy.startFlowsDesc"),onselect:"core:start-flows", visible:false})
-                mainMenuItems.push({id:"deploymenu-item-runtime-stop", icon:"red/images/stop.svg",label:RED._("deploy.stopFlows"),sublabel:RED._("deploy.stopFlowsDesc"),onselect:"core:stop-flows", visible:false})
+                mainMenuItems.push({id:"deploymenu-item-runtime-start", icon:RED.resource.url("images/start.svg"),label:RED._("deploy.startFlows"),sublabel:RED._("deploy.startFlowsDesc"),onselect:"core:start-flows", visible:false})
+                mainMenuItems.push({id:"deploymenu-item-runtime-stop", icon:RED.resource.url("images/stop.svg"),label:RED._("deploy.stopFlows"),sublabel:RED._("deploy.stopFlowsDesc"),onselect:"core:stop-flows", visible:false})
             }
-            mainMenuItems.push({id:"deploymenu-item-reload", icon:"red/images/deploy-reload.svg",label:RED._("deploy.restartFlows"),sublabel:RED._("deploy.restartFlowsDesc"),onselect:"core:restart-flows"})
+            mainMenuItems.push({id:"deploymenu-item-reload", icon:RED.resource.url("images/deploy-reload.svg"),label:RED._("deploy.restartFlows"),sublabel:RED._("deploy.restartFlowsDesc"),onselect:"core:restart-flows"})
             RED.menu.init({id:"red-ui-header-button-deploy-options", options: mainMenuItems });
         } else if (type == "simple") {
             var label = options.label || RED._("deploy.deploy");
-            var icon = 'red/images/deploy-full-o.svg';
+            var icon = RED.resource.url('images/deploy-full-o.svg');
             if (options.hasOwnProperty('icon')) {
                 icon = options.icon;
             }
@@ -89,7 +89,7 @@ RED.deploy = (function() {
                   '<span>'+label+'</span>'+
                 '</span>'+
                 '<span class="red-ui-deploy-button-spinner hide">'+
-                 '<img src="red/images/spin.svg"/>'+
+                 '<img src="' + RED.resource.url("images/spin.svg") + '"/>'+
                 '</span>'+
               '</a>'+
               '</span></li>').prependTo(".red-ui-header-toolbar");
@@ -189,7 +189,7 @@ RED.deploy = (function() {
         var message = $('<div>');
         $('<p data-i18n="deploy.confirm.conflict"></p>').appendTo(message);
         var conflictCheck = $('<div class="red-ui-deploy-dialog-confirm-conflict-row">'+
-            '<img src="red/images/spin.svg"/><div data-i18n="deploy.confirm.conflictChecking"></div>'+
+            '<img src="' + RED.resource.url("images/spin.svg") + '"/><div data-i18n="deploy.confirm.conflictChecking"></div>'+
         '</div>').appendTo(message);
         var conflictAutoMerge = $('<div class="red-ui-deploy-dialog-confirm-conflict-row">'+
             '<i class="fa fa-check"></i><div data-i18n="deploy.confirm.conflictAutoMerge"></div>'+

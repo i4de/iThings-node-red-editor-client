@@ -136,7 +136,7 @@
             })
         }
         typedLicenses.types.push({
-            value:"_custom_", label:RED._("editor:subflow.licenseOther"), icon:"red/images/typedInput/az.svg"
+            value:"_custom_", label:RED._("editor:subflow.licenseOther"), icon:RED.resource.url("images/typedInput/az.svg")
         })
         if (!moduleProps.license) {
             typedLicenses.default = "none";
