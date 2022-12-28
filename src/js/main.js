@@ -19,6 +19,6 @@ $(function() {
         document.title = document.title+" : "+window.location.hostname;
     }
     RED.init({
-        apiRootUrl: ""
+        apiRootUrl: "http://localhost:1880"
     });
 });

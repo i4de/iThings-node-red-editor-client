@@ -18,7 +18,9 @@
     "private": "true",
     "scripts": {
         "build": "grunt build",
-        "dev": "grunt dev",
+        "dev": "npm-run-all --parallel dev:*",
+        "dev:watch": "grunt dev",
+        "dev:server": "http-server public -p 3031",
         "build-dev": "grunt build-dev"
     },
     "dependencies": {
@@ -47,6 +49,7 @@
         "grunt-sass": "~3.1.0",
         "grunt-simple-mocha": "~0.4.1",
         "grunt-simple-nyc": "^3.0.1",
+        "http-server": "^14.1.1",
         "i18next-http-backend": "1.4.1",
         "jquery-i18next": "1.2.1",
         "jsdoc-nr-template": "github:node-red/jsdoc-nr-template",
@@ -55,6 +58,7 @@
         "mocha": "9.2.2",
         "node-red-node-test-helper": "^0.3.0",
         "nodemon": "2.0.19",
+        "npm-run-all": "^4.1.5",
         "proxy": "^1.0.2",
         "sass": "1.54.2",
         "should": "13.2.3",
