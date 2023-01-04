@@ -65,5 +65,8 @@
         "sinon": "11.1.2",
         "stoppable": "^1.1.0",
         "supertest": "6.2.4"
+    },
+    "volta": {
+        "node": "18.12.1"
     }
 }
