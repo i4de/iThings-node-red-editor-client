@@ -105,6 +105,7 @@ RED.settings = (function () {
             window.location.search = "";
         }
         RED.settings.apiRootUrl = options.apiRootUrl;
+        RED.settings.singleFlow = options.singleFlow;
 
         $.ajaxSetup({
             beforeSend: function(jqXHR,settings) {

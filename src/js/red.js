@@ -232,8 +232,105 @@ var RED = (function() {
         });
     }
 
+    function getHashData() {
+        var hashData = {};
+        var hashKeyValue = window.location.hash.replace(/^#/, '').split('&').filter(s => s).map(s => s.split(/[\/=]/));
+        hashKeyValue.forEach((kv) => {
+            const [k, v] = kv;
+            if (k) {
+                hashData[k] = v;
+            }
+        });
+        return hashData;
+    }
+
+    function importNodesData(nodes) {
+        var hashData = getHashData();
+        var flowId = hashData.flow;
+        RED.nodes.version(nodes.rev);
+        loader.reportProgress(RED._("event.importFlows"), 90)
+        try {
+            RED.nodes.import(nodes.flows);
+            RED.nodes.dirty(false);
+            RED.view.redraw(true);
+            if (flowId) {
+                RED.workspaces.show(flowId, true);
+            }
+            if (RED.workspaces.count() > 0) {
+                const hiddenTabs = JSON.parse(RED.settings.getLocal("hiddenTabs") || "{}");
+                const workspaces = RED.nodes.getWorkspaceOrder();
+                if (RED.workspaces.active() === 0) {
+                    for (let index = 0; index < workspaces.length; index++) {
+                        const ws = workspaces[index];
+                        if (!hiddenTabs[ws]) {
+                            RED.workspaces.show(ws);
+                            break;
+                        }
+                    }
+                }
+                if (RED.workspaces.active() === 0) {
+                    RED.workspaces.show(workspaces[0]);
+                }
+            }
+        } catch (err) {
+            console.warn(err);
+            RED.notify(
+                RED._("event.importError", { message: err.message }),
+                {
+                    fixed: true,
+                    type: 'error'
+                }
+            );
+        }
+    }
+
+    function loadSingleFlow(done) {
+        var hashData = getHashData();
+        const flowId = hashData.flow;
+
+        $.ajax({
+            headers: {
+                "Accept": "application/json",
+            },
+            cache: false,
+            url: 'flow/' + flowId,
+            success: function (flow) {
+                if (flow) {
+                    var nodes = {
+                        flows: [{
+                            disabled: flow.disabled,
+                            env: flow.env,
+                            id: flow.id,
+                            label: flow.label,
+                            type: 'tab',
+                        }].concat(flow.nodes || []).concat(flow.configs || []),
+                    };
+                    importNodesData(nodes);
+                }
+                done();
+            },
+            error: function(err) {
+                console.warn(err);
+                RED.notify(
+                    RED._("event.importError", { message: err.message }),
+                    {
+                        fixed: true,
+                        type: 'error'
+                    }
+                );
+            }
+        });
+    }
+
     function loadFlows(done) {
         loader.reportProgress(RED._("event.loadFlows"),80 )
+        var hashData = getHashData();
+        var flowId = hashData.flow;
+
+        // if (RED.settings.singleFlow) {
+        //     loadSingleFlow(done);
+        //     return;
+        // }
         $.ajax({
             headers: {
                 "Accept":"application/json",
@@ -242,42 +339,13 @@ var RED = (function() {
             url: 'flows',
             success: function(nodes) {
                 if (nodes) {
-                    var currentHash = window.location.hash;
-                    RED.nodes.version(nodes.rev);
-                    loader.reportProgress(RED._("event.importFlows"),90 )
-                    try {
-                        RED.nodes.import(nodes.flows);
-                        RED.nodes.dirty(false);
-                        RED.view.redraw(true);
-                        if (/^#flow\/.+$/.test(currentHash)) {
-                            RED.workspaces.show(currentHash.substring(6),true);
+                    if (RED.settings.singleFlow) {
+                        var matchNode = nodes.flows.filter(node => node.id === flowId);
+                        if (matchNode.length === 0 || matchNode[0].type !== 'tab') {
+                            throw Error('no match flow');
                         }
-                        if (RED.workspaces.count() > 0) {
-                            const hiddenTabs = JSON.parse(RED.settings.getLocal("hiddenTabs")||"{}");
-                            const workspaces = RED.nodes.getWorkspaceOrder();
-                            if (RED.workspaces.active() === 0) {
-                                for (let index = 0; index < workspaces.length; index++) {
-                                    const ws = workspaces[index];
-                                    if (!hiddenTabs[ws]) {
-                                        RED.workspaces.show(ws);
-                                        break;
-                                    }
-                                }
-                            }
-                            if (RED.workspaces.active() === 0) {
-                                RED.workspaces.show(workspaces[0]);
-                            }
-                        }
-                    } catch(err) {
-                        console.warn(err);
-                        RED.notify(
-                            RED._("event.importError", {message: err.message}),
-                            {
-                                fixed: true,
-                                type: 'error'
-                            }
-                        );
                     }
+                    importNodesData(nodes);
                 }
                 done();
             }

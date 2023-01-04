@@ -20,6 +20,6 @@ $(function() {
     }
     RED.init({
         apiRootUrl: "http://localhost:1880",
-        resourcePrefix: 'public/'
+        singleFlow: true,
     });
 });
